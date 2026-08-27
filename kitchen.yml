@@ -9,7 +9,7 @@ driver:
   use_sudo: false
 
 provisioner:
-  formula: vscode_ide
+  formula: vscode-ide
   log_level: debug
   name: salt_solo
   pillars_from_directories:

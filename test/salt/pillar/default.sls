@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
-vscode_ide:
+vscode-ide:
   config:
     /etc/vscode-ide.conf:
       extensions.autoCheckUpdates: false
