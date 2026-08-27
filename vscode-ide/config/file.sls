@@ -9,20 +9,11 @@
 
 include:
   - {{ sls_package_install }}
+{%- if grains.kernel == "Linux" %}
+  - vscode-ide.config.lin_file
+{%- elif grains.kernel == "Windows" %}
+  - vscode-ide.config.win_file
+{%- endif %}
 
-vscode-ide-config-file-file-managed:
-  file.managed:
-    - name: {{ vscode_ide.config }}
-    - source: {{ files_switch(['example.tmpl'],
-                              lookup='vscode-ide-config-file-file-managed'
-                 )
-              }}
-    - mode: 644
-    - user: root
-    - group: {{ vscode_ide.rootgroup }}
-    - makedirs: True
-    - template: jinja
-    - require:
-      - sls: {{ sls_package_install }}
-    - context:
-        vscode_ide: {{ vscode_ide | json }}
+Avoid being a null-router (config/file) - VSCode IDE:
+  test.nop: []

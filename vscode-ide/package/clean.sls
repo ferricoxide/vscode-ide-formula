@@ -8,9 +8,11 @@
 
 include:
   - {{ sls_config_clean }}
+{%- if grains.kernel == "Linux" %}
+  - vscode-ide.package.lin_clean
+{%- elif grains.kernel == "Windows" %}
+  - vscode-ide.package.win_clean
+{%- endif %}
 
-vscode-ide-package-clean-pkg-removed:
-  pkg.removed:
-    - name: {{ vscode_ide.pkg.name }}
-    - require:
-      - sls: {{ sls_config_clean }}
+Avoid being a null-router (package/clean) - VSCode IDE:
+  test.nop: []
