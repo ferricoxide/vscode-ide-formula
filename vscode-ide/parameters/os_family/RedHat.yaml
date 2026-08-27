@@ -18,6 +18,10 @@ values:
       extensions.autoUpdate: false
       telemetry.telemetryLevel: "off"
       update.mode: "none"
+    /etc/vscode/settings.json:
+      editor.formatOnSave: true
+      files.trimTrailingWhitespace: true
+      workbench.colorTheme: "Default Dark Modern"
   pkg:
     name: code
     repo:
