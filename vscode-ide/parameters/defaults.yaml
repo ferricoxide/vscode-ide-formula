@@ -4,7 +4,7 @@
 # Set cross-platform default values.
 ---
 values:
-  config: ''
+  config: {}
   pkg:
     name: ''
   rootgroup: ''

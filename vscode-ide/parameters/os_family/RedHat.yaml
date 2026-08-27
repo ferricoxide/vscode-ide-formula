@@ -12,12 +12,12 @@
 # values: {}
 ---
 values:
-  config: /etc/vscode-ide.conf
-  config_settings:
-    auto_check_updates: false
-    auto_update: false
-    telemetry_level: off
-    update_mode: none
+  config:
+    /etc/vscode-ide.conf:
+      extensions.autoCheckUpdates: false
+      extensions.autoUpdate: false
+      telemetry.telemetryLevel: "off"
+      update.mode: "none"
   pkg:
     name: code
     repo:
