@@ -12,7 +12,15 @@
 # values: {}
 ---
 values:
-  pkg:
-    name: vscode-ide-redhat
   config: /etc/vscode-ide.conf
+  pkg:
+    name: code
+    repo:
+      baseurl: https://packages.microsoft.com/yumrepos/vscode
+      enabled: 1
+      gpgcheck: 1
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+      name: vscode
+      summary: Visual Studio Code
+  rootgroup: root
 ...

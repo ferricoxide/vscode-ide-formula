@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 #
-# Set default values.
+# Set cross-platform default values.
 ---
 values:
+  config: ''
   pkg:
-    name: vscode-ide
-  rootgroup: root
-  config: '/etc/vscode-ide'
-  service:
-    name: vscode-ide
-  subcomponent:
-    config: '/etc/vscode-ide-subcomponent-formula.conf'
-  # Just here for testing
-  added_in_defaults: defaults_value
-  winner: defaults
+    name: ''
+  rootgroup: ''
 ...
