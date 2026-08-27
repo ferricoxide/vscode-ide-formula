@@ -3,14 +3,14 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- set sls_service_clean = tplroot ~ '.service.clean' %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vscode_ide with context %}
 
 include:
-  - {{ sls_service_clean }}
+{%- if grains.kernel == "Linux" %}
+  - vscode-ide.config.lin_clean
+{%- elif grains.kernel == "Windows" %}
+  - vscode-ide.config.win_clean
+{%- endif %}
 
-vscode-ide-config-clean-file-absent:
-  file.absent:
-    - name: {{ vscode_ide.config }}
-    - require:
-      - sls: {{ sls_service_clean }}
+Avoid being a null-router (config/clean) - VSCode IDE:
+  test.nop: []

@@ -1,9 +1,9 @@
 name: vscode-ide-formula
 os: RedHat, CentOS, Oracle Enterprise, AlmaLinux, Rocky, Windows
 os_family: RedHat, Windows
-version: 0.0.1
+version: 0.1.0
 release: 1
 minimum_version: 3007.13
 summary: Salt Formula to install VSCode IDE on RHEL and Windows Server targets
 description: Installs and manages VSCode IDE on RHEL-based Linux and Windows Server target hosts
-top_level_dir: vscode_ide
+top_level_dir: vscode-ide

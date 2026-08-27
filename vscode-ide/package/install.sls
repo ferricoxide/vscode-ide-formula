@@ -5,6 +5,12 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vscode_ide with context %}
 
-vscode-ide-package-install-pkg-installed:
-  pkg.installed:
-    - name: {{ vscode_ide.pkg.name }}
+include:
+{%- if grains.kernel == "Linux" %}
+  - vscode-ide.package.lin_install
+{%- elif grains.kernel == "Windows" %}
+  - vscode-ide.package.win_install
+{%- endif %}
+
+Avoid being a null-router (package/install) - VSCode IDE:
+  test.nop: []

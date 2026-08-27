@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+name: default
+title: VSCode IDE Formula Integration Test Profile
+supports:
+  - platform-family: redhat

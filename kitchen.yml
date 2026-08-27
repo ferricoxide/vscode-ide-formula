@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+driver:
+  name: docker
+  privileged: true
+  run_command: /usr/lib/systemd/systemd
+  use_buildx: false
+  use_sudo: false
+
+provisioner:
+  formula: vscode-ide
+  log_level: debug
+  name: salt_solo
+  pillars_from_directories:
+    - test/salt/pillar
+  require_chef: false
+  salt_copy_filter:
+    - .kitchen
+    - .git
+  salt_install: none
+
+transport:
+  max_wait_until_ready: 60
+
+platforms:
+  - name: almalinux-9-latest
+    driver:
+      image: saltimages/salt-master-py3:almalinux-9
+  - name: almalinux-9-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:almalinux-9
+  - name: rockylinux-9-latest
+    driver:
+      image: saltimages/salt-master-py3:rockylinux-9
+  - name: rockylinux-9-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:rockylinux-9
+  - name: almalinux-10-latest
+    driver:
+      image: saltimages/salt-master-py3:almalinux-10
+  - name: almalinux-10-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:almalinux-10
+  - name: rockylinux-10-latest
+    driver:
+      image: saltimages/salt-master-py3:rockylinux-10
+  - name: rockylinux-10-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:rockylinux-10
+
+verifier:
+  name: inspec
+  reporter:
+    - cli
+  sudo: true
+
+suites:
+  - name: default
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - vscode-ide._mapdata
+            - vscode-ide
+    verifier:
+      inspec_tests:
+        - path: test/integration/default

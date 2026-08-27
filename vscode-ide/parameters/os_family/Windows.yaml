@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set default values for Windows-based platforms.
+values:
+  config: C:\ProgramData\vscode-ide.conf
+  pkg:
+    name: vscode
+  rootgroup: Administrators
