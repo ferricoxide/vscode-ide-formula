@@ -15,13 +15,14 @@ Manage Visual Studio Code Configuration File:
     - context:
         vscode_ide: {{ vscode_ide | json }}
     - group: {{ vscode_ide.rootgroup }}
-    - mode: 644
+    - mode: '0644'
     - name: {{ vscode_ide.config }}
     - require:
       - sls: {{ sls_package_install }}
-    - source: {{ files_switch(['example.tmpl'],
+    - source: {{ files_switch(['example.tmpl.jinja', 'example.tmpl'],
                                lookup='Manage Visual Studio Code'
                                       ~ ' Configuration File'
                 )
               }}
     - template: jinja
+    - user: root

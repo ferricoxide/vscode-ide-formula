@@ -1,0 +1,19 @@
+{#- -*- coding: utf-8 -*- #}
+{#- vim: ft=jinja #}
+########################################################################
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+########################################################################
+
+{%- set cfg = vscode_ide.get('config_settings', {}) %}
+{%- set auto_check = cfg.get('auto_check_updates', false) | json %}
+{%- set auto_update = cfg.get('auto_update', false) | json %}
+{%- set telemetry = cfg.get('telemetry_level', 'off') | json %}
+{%- set update_mode = cfg.get('update_mode', 'none') | json %}
+
+{
+  "extensions.autoCheckUpdates": {{ auto_check }},
+  "extensions.autoUpdate": {{ auto_update }},
+  "telemetry.telemetryLevel": {{ telemetry }},
+  "update.mode": {{ update_mode }}
+}
