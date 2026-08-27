@@ -9,3 +9,20 @@ concurrency:
 jobs:
   test:
     uses: plus3it/actions-workflows/.github/workflows/test.yml@0a03f75193a010b3532cc90e8ad0b15a09ed33c1
+
+  linux:
+    uses: plus3it/actions-workflows/.github/workflows/test-salt-linux.yml@0a03f75193a010b3532cc90e8ad0b15a09ed33c1
+    strategy:
+      matrix:
+        os_version:
+          - 8
+          - 9
+        salt_state:
+          - vscode-ide
+        salt_pillar_root:
+          - ./tests/pillar/test-linux-main
+    with:
+      salt-os-version: ${{ matrix.os_version }}
+      salt-state: ${{ matrix.salt_state }}
+      salt-pillar-root: ${{ matrix.salt_pillar_root }}
+
