@@ -9,7 +9,9 @@ control 'vscode-ide.config.file' do
     its('group') { should eq 'root' }
     its('mode') { should cmp '00644' }
     its('owner') { should eq 'root' }
-    its('content') { should match /"telemetryLevel":\s*"off"/ }
+    its('content') do
+      should match /"telemetry\.telemetryLevel":\s*"off"/
+    end
   end
 
   describe file('/etc/vscode/settings.json') do
@@ -18,6 +20,8 @@ control 'vscode-ide.config.file' do
     its('group') { should eq 'root' }
     its('mode') { should cmp '00644' }
     its('owner') { should eq 'root' }
-    its('content') { should match /"editor.formatOnSave":\s*true/ }
+    its('content') do
+      should match /"editor\.formatOnSave":\s*true/
+    end
   end
 end
