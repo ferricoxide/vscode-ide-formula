@@ -24,12 +24,30 @@ transport:
   max_wait_until_ready: 60
 
 platforms:
+  - name: almalinux-9-latest
+    driver:
+      image: saltimages/salt-master-py3:almalinux-9
   - name: almalinux-9-3007-9
     driver:
       image: saltimages/salt-3007.9-py3:almalinux-9
+  - name: rockylinux-9-latest
+    driver:
+      image: saltimages/salt-master-py3:rockylinux-9
   - name: rockylinux-9-3007-9
     driver:
       image: saltimages/salt-3007.9-py3:rockylinux-9
+  - name: almalinux-10-latest
+    driver:
+      image: saltimages/salt-master-py3:almalinux-10
+  - name: almalinux-10-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:almalinux-10
+  - name: rockylinux-10-latest
+    driver:
+      image: saltimages/salt-master-py3:rockylinux-10
+  - name: rockylinux-10-3007-9
+    driver:
+      image: saltimages/salt-3007.9-py3:rockylinux-10
 
 verifier:
   name: inspec
