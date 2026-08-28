@@ -13,6 +13,10 @@
 .tardigrade-ci
 tardigrade-ci/
 
+# Ignore Kitchen leftovers
+.kitchen/
+Gemfile.lock
+
 # python cache
 __pycache__
 .python-version
