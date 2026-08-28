@@ -53,10 +53,10 @@ Enforce Explicit Version Contract:
           default_full_name %}
 
 Compile Local Winrepo Database:
-  cmd.run:
-    - name: 'salt-call --local winrepo.genrepo --out=quiet'
+  module.run:
     - onchanges:
       - file: 'Manage Vs Code Winrepo Definition File'
+    - winrepo.genrepo: []
 
 Ensure Local Winrepo Directory Exists:
   file.directory:
@@ -80,8 +80,8 @@ Manage Vs Code Winrepo Definition File:
 
 Refresh Minion Package Manager Database Cache:
   module.run:
-    - name: pkg.refresh_db
     - onchanges:
-      - cmd: 'Compile Local Winrepo Database'
+      - module: 'Compile Local Winrepo Database'
+    - pkg.refresh_db: []
 
 {%- endif %}

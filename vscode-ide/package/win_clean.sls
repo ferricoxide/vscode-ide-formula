@@ -17,16 +17,16 @@ include:
   - {{ sls_config_clean }}
 
 Compile Local Winrepo Database After Deletion:
-  cmd.run:
-    - name: 'salt-call --local winrepo.genrepo --out=quiet'
+  module.run:
     - onchanges:
       - file: 'Remove Vs Code Winrepo Definition File'
+    - winrepo.genrepo: []
 
 Refresh Minion Package Manager Database Cache After Deletion:
   module.run:
-    - name: pkg.refresh_db
     - onchanges:
-      - cmd: 'Compile Local Winrepo Database After Deletion'
+      - module: 'Compile Local Winrepo Database After Deletion'
+    - pkg.refresh_db: []
 
 Remove Vs Code Package:
   pkg.removed:
