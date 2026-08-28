@@ -33,9 +33,11 @@
 {%- endif %}
 
 {%- if not vscode_version %}
+
 Enforce Explicit Version Contract:
   test.fail_without_changes:
     - name: 'Unable to determine VSCode version. Define version in Pillar.'
+
 {%- else %}
   {%- set winrepo_local_dir = salt['config.get'](
           'winrepo_dir',
@@ -81,4 +83,5 @@ Refresh Minion Package Manager Database Cache:
     - name: pkg.refresh_db
     - onchanges:
       - cmd: 'Compile Local Winrepo Database'
+
 {%- endif %}
