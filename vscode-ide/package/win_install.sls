@@ -9,3 +9,5 @@
 Install Visual Studio Code Package:
   pkg.installed:
     - name: '{{ package_name }}'
+    - require:
+      - sls: {{ tplroot }}.package.winrepo
