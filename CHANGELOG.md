@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.1.1
+
+**Released**: 2026.08.28
+
+**Summary**:
+
+*   Add support for Windows Server targets.
+*   Implement dynamic `winrepo` definition generation and local database
+    compilation using `winrepo.genrepo`. Allow override by setting a new
+    `download_uri` parameter and value in Pillar
+*   Implement cross-platform configuration serialization via `file.serialize`.
+*   Add optional public desktop shortcut creation using `shortcut.present`
+    controlled via the `desktop_shortcut` parameter. Default is "false" for "no
+    desktop shortcut"
+
 ## 0.1.0
 
 **Released**: 2026.08.27
