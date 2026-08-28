@@ -3,7 +3,9 @@
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as vscode_ide with context %}
+{%- set pkg_map = vscode_ide.get('pkg') or {} %}
+{%- set package_name = pkg_map.get('name', 'vscode') %}
 
 Install Visual Studio Code Package:
   pkg.installed:
-    - name: {{ vscode_ide.pkg.name }}
+    - name: '{{ package_name }}'
