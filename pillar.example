@@ -3,15 +3,25 @@
 # ==============================================================================
 # Visual Studio Code (VSCode) IDE Formula Pillar Configuration Example
 # ==============================================================================
-
 vscode-ide:
   # ============================================================================
   # SYSTEM-WIDE CONFIGURATION DIRECTIVES (config)
+  #
+  #   Dictionary mapping absolute file paths to nested setting objects.  These
+  #   dictionaries are serialized to JSON on target systems using `file.serialize`.
   # ============================================================================
-  # Dictionary mapping absolute file paths to nested setting objects.
-  # These dictionaries are serialized to JSON on target systems using
-  # `file.serialize`.
   config:
+    # WINDOWS-SPECIFIC PARAMETERS
+    #   Controls creation of a public desktop launcher shortcut on Windows.
+    #   Windows default: false
+    desktop_shortcut: true
+
+    # SYSTEM-WIDE FILE SERIALIZATION DIRECTIVES
+    #   Dictionaries mapping absolute file paths to nested setting objects.
+    #   These dictionaries are serialized to JSON on target systems using
+    #   `file.serialize`.
+    # ----------------------------------
+    # Linux Example Configuration Files:
     /etc/vscode-ide.conf:
       extensions.autoCheckUpdates: false
       extensions.autoUpdate: false
@@ -22,15 +32,27 @@ vscode-ide:
       files.trimTrailingWhitespace: true
       workbench.colorTheme: "Default Dark Modern"
 
+    # ------------------------------------
+    # Windows Example Configuration Files:
+    'C:\ProgramData\vscode-ide.conf':
+      extensions.autoCheckUpdates: false
+      extensions.autoUpdate: false
+      telemetry.telemetryLevel: "off"
+      update.mode: "none"
+    'C:\ProgramData\VSCode\settings.json':
+      editor.formatOnSave: true
+      files.trimTrailingWhitespace: true
+      workbench.colorTheme: "Default Dark Modern"
+
   # ============================================================================
   # PACKAGING & REPOSITORY DIRECTIVES (pkg)
   # ============================================================================
   pkg:
-    # Package identifier for native package manager installation
+    # Package identifier for native package manager or winrepo installation
     # Linux default: 'code' | Windows default: 'vscode'
     name: 'code'
 
-    # Package repository configuration (Linux RedHat family)
+    # LINUX PACKAGE REPOSITORY DIRECTIVES (RedHat family)
     repo:
       baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
       enabled: 1
@@ -38,6 +60,21 @@ vscode-ide:
       gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
       name: 'vscode'
       summary: 'Visual Studio Code'
+
+    # WINDOWS WINREPO PACKAGE DIRECTIVES
+    #   Explicit URL to download the VSCode installer. If left empty/omitted,
+    #   winrepo queries the VSCode update API for latest. Use this if
+    #   installation of a specific version is desired or the intaller-files are
+    #   self-hosted
+    download_uri: 'https://update.code.visualstudio.com/1.92.2/win32-x64/stable'
+
+    # DisplayName match string registered in Windows Add/Remove Programs.
+    # Windows default: 'Microsoft Visual Studio Code'
+    full_name: 'Microsoft Visual Studio Code'
+
+    # Exact product version string (e.g. '1.92.2').
+    # Required when specifying a custom download_uri or self-hosted package.
+    version: '1.92.2'
 
   # ============================================================================
   # OS & SECURITY OVERRIDES
