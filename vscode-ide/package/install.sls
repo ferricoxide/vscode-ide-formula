@@ -9,6 +9,7 @@ include:
 {%- if grains.kernel == "Linux" %}
   - vscode-ide.package.lin_install
 {%- elif grains.kernel == "Windows" %}
+  - vscode-ide.package.winrepo
   - vscode-ide.package.win_install
 {%- endif %}
 

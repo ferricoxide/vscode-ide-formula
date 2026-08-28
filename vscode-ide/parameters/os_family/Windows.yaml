@@ -1,9 +1,21 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
-#
 # Set default values for Windows-based platforms.
 values:
-  config: C:\ProgramData\vscode-ide.conf
+  config:
+    desktop_shortcut: false
+    'C:\ProgramData\vscode-ide.conf':
+      extensions.autoCheckUpdates: false
+      extensions.autoUpdate: false
+      telemetry.telemetryLevel: "off"
+      update.mode: "none"
+    'C:\ProgramData\VSCode\settings.json':
+      editor.formatOnSave: true
+      files.trimTrailingWhitespace: true
+      workbench.colorTheme: "Default Dark Modern"
   pkg:
-    name: vscode
+    download_uri: ''
+    full_name: 'Microsoft Visual Studio Code'
+    name: 'vscode'
+    version: ''
   rootgroup: Administrators
