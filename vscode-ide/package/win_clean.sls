@@ -17,16 +17,31 @@ include:
   - {{ sls_config_clean }}
 
 Compile Local Winrepo Database After Deletion:
-  module.run:
+  cmd.run:
+    - name: |
+        $cmd = (Get-Command salt-call.exe -ErrorAction SilentlyContinue).Path
+        if (-not $cmd) {
+          $paths = @(
+            "${env:ProgramFiles}\Salt Project\Salt\salt-call.exe",
+            "C:\Watchmaker\Salt\salt-call.exe",
+            "C:\salt\salt-call.bat"
+          )
+          $cmd = $paths | Where-Object { Test-Path $_ } | Select-Object -First 1
+        }
+        if ($cmd) {
+          & $cmd --local winrepo.genrepo --out=quiet
+        } else {
+          throw "salt-call.exe not found"
+        }
     - onchanges:
       - file: 'Remove Vs Code Winrepo Definition File'
-    - winrepo.genrepo: []
+    - shell: powershell
 
 Refresh Minion Package Manager Database Cache After Deletion:
   module.run:
+    - name: pkg.refresh_db
     - onchanges:
-      - module: 'Compile Local Winrepo Database After Deletion'
-    - pkg.refresh_db: []
+      - cmd: 'Compile Local Winrepo Database After Deletion'
 
 Remove Vs Code Package:
   pkg.removed:

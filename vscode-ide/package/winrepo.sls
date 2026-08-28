@@ -53,10 +53,25 @@ Enforce Explicit Version Contract:
           default_full_name %}
 
 Compile Local Winrepo Database:
-  module.run:
+  cmd.run:
+    - name: |
+        $cmd = (Get-Command salt-call.exe -ErrorAction SilentlyContinue).Path
+        if (-not $cmd) {
+          $paths = @(
+            "${env:ProgramFiles}\Salt Project\Salt\salt-call.exe",
+            "C:\Watchmaker\Salt\salt-call.exe",
+            "C:\salt\salt-call.bat"
+          )
+          $cmd = $paths | Where-Object { Test-Path $_ } | Select-Object -First 1
+        }
+        if ($cmd) {
+          & $cmd --local winrepo.genrepo --out=quiet
+        } else {
+          throw "salt-call.exe not found"
+        }
     - onchanges:
       - file: 'Manage Vs Code Winrepo Definition File'
-    - winrepo.genrepo: []
+    - shell: powershell
 
 Ensure Local Winrepo Directory Exists:
   file.directory:
@@ -80,8 +95,8 @@ Manage Vs Code Winrepo Definition File:
 
 Refresh Minion Package Manager Database Cache:
   module.run:
+    - name: pkg.refresh_db
     - onchanges:
-      - module: 'Compile Local Winrepo Database'
-    - pkg.refresh_db: []
+      - cmd: 'Compile Local Winrepo Database'
 
 {%- endif %}
