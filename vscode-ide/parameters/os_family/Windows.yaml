@@ -13,5 +13,8 @@ values:
       files.trimTrailingWhitespace: true
       workbench.colorTheme: "Default Dark Modern"
   pkg:
-    name: vscode
+    download_uri: ''
+    full_name: 'Visual Studio Code'
+    name: 'vscode'
+    version: ''
   rootgroup: Administrators
