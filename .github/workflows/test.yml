@@ -25,3 +25,19 @@ jobs:
       salt-os-version: ${{ matrix.os_version }}
       salt-state: ${{ matrix.salt_state }}
       salt-pillar-root: ${{ matrix.salt_pillar_root }}
+
+  windows:
+    uses: plus3it/actions-workflows/.github/workflows/test-salt-windows.yml@0a03f75193a010b3532cc90e8ad0b15a09ed33c1
+    strategy:
+      matrix:
+        os_version:
+          - windows-2022
+          - windows-2025
+        salt_state:
+          - vscode-ide
+        salt_pillar_root:
+          - ./tests/pillar/vscode-ide
+    with:
+      salt-os-version: ${{ matrix.os_version }}
+      salt-state: ${{ matrix.salt_state }}
+      salt-pillar-root: ${{ matrix.salt_pillar_root }}
