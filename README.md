@@ -79,7 +79,22 @@ you can execute the test suite inside a rootless Podman runner container:
 
 ### Linux
 
+Should work on all Enterprise Linux and derived distros that leverage `dnf`.
+However, project-content has only been specifically testd on Enterprise Linux 8
+and 9 variants (RHEL, AlmaLinux, Rocky Linux, CentOS Stream).
+
+Similary, while `dnf`-based installations _should_ work with vendor and private
+repositories, the method was only specifically tested using the official
+Microsoft YUM repositories.
+
 ### Windows
+
+Should work with self-hosted installer-files and for arbitrary
+version-specificatons. However, it was only specifically tested on Windows
+Server 2022 using the official, Microsoft-hosted installers and only requested
+the "latest" version. As such, download-sources were identified using dynamic
+queries of the VSCode Update API to build local winrepo package definitions and
+installs machine-wide to `C:\Program Files`.
 
 [^1]: While this project's `kitchen.yaml` file has mappings for Alma and Rocky
     Linux 10, using them currently does not work. The necessary (official)
