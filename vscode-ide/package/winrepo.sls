@@ -48,7 +48,7 @@ Enforce Explicit Version Contract:
   {%- set win_version = vscode_version ~ '.0' if
           vscode_version.count('.') < 3 else
           vscode_version %}
-  {%- set default_full_name = 'Visual Studio Code' %}
+  {%- set default_full_name = 'Microsoft Visual Studio Code' %}
   {%- set full_name = full_name_override if full_name_override else
           default_full_name %}
 
@@ -62,7 +62,9 @@ Compile Local Winrepo Database:
             "C:\Watchmaker\Salt\salt-call.exe",
             "C:\salt\salt-call.bat"
           )
-          $cmd = $paths | Where-Object { Test-Path $_ } | Select-Object -First 1
+          $cmd = $paths |
+            Where-Object { Test-Path $_ } |
+            Select-Object -First 1
         }
         if ($cmd) {
           & $cmd --local winrepo.genrepo --out=quiet

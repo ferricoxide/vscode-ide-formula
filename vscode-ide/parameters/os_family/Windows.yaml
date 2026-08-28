@@ -14,7 +14,7 @@ values:
       workbench.colorTheme: "Default Dark Modern"
   pkg:
     download_uri: ''
-    full_name: 'Visual Studio Code'
+    full_name: 'Microsoft Visual Studio Code'
     name: 'vscode'
     version: ''
   rootgroup: Administrators
