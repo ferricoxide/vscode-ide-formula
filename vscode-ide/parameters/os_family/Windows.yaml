@@ -3,6 +3,7 @@
 # Set default values for Windows-based platforms.
 values:
   config:
+    desktop_shortcut: false
     'C:\ProgramData\vscode-ide.conf':
       extensions.autoCheckUpdates: false
       extensions.autoUpdate: false
